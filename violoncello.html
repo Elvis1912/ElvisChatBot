@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Violoncello - Instrumento de Elegancia y Pasión</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B4513;
+            --primary2: #78350e;
+            --accent: #D4AF37;
+            --light-bg: #F5F1E8;
+            --dark-text: #2C2C2C;
+            --neutral: #8A7F73;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, rgba(139, 69, 19, 0.9) 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            font-style: italic;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Secciones */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        section p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: justify;
+            color: var(--dark-text);
+        }
+
+        /* Intro */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .intro-highlight {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 20px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        /* Historia Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            padding-left: 50px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background-color: var(--accent);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .timeline-text {
+            margin-top: 5px;
+            color: var(--neutral);
+        }
+
+        /* Chelistas */
+        .musicians-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .musician-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--accent);
+        }
+
+        .musician-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .musician-card h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+
+        .musician-period {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .musician-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Características del instrumento */
+        .characteristics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .characteristic-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 69, 19, 0.1) 100%);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .characteristic-box h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* Técnicas */
+        .techniques {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .technique-badge {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .technique-badge:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .musicians-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        
+        /* Estilos del cuadro del Chatbot */
+
+        /* Contenedor del contenido de ejemplo */
+        .content {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- ESTILOS DEL BOTÓN DEL CHATBOT --- */
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;  /* Tamaño del botón redondo */
+            height: 80px;
+            background-color: #fff; /* Fondo blanco */
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000; /* Asegura que esté por encima de todo */
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Mantiene la imagen dentro del círculo */
+        }
+
+        /* Efecto hover en el botón */
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilo para la imagen dentro del botón */
+        .chatbot-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ajusta la imagen sin deformarla */
+        }
+
+        /* --- ESTILOS DEL CUADRO DE DESPLIEGUE --- */
+        .chat-window {
+            position: fixed;
+            bottom: 110px; /* Separación del botón */
+            right: 20px;
+            width: 50vw; /* 50% del ancho de la ventana */
+            height: 50vh; /* 50% de la altura de la ventana */
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            z-index: 999; /* Por debajo del botón pero por encima de la página */
+            display: none; /* Oculto por defecto */
+            flex-direction: column;
+            overflow: hidden; /* Evita que el contenido se salga */
+        }
+
+        /* Clase para mostrar el cuadro (se activa con JS) */
+        .chat-window.open {
+            display: flex;
+        }
+
+        /* Cabecera del chat */
+        .chat-header {
+            background-color: var(--primary2); /* Un color azul similar al círculo de la imagen */
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Botón para cerrar el chat */
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Área de contenido del chat (mensajes) */
+        .chat-content {
+            flex: 1; /* Ocupa el espacio restante */
+            padding: 15px;
+            overflow-y: auto; /* Permite scroll si hay muchos mensajes */
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Área de entrada de texto */
+        .chat-input-area {
+            display: flex;
+            padding: 10px;
+            background-color: #fafafa;
+        }
+
+        .chat-input-area input {
+            flex: 1; /* El input ocupa casi todo el ancho */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chat-input-area button {
+            background-color: var(--primary2);
+            color: white;
+            border: none;
+            padding: 0 15px;
+            margin-left: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div>
+            <h1>El Violoncello</h1>
+            <p>"La voz más cercana al corazón humano"</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#caracteristicas">Características</a></li>
+            <li><a href="#chelistas">Chelistas Famosos</a></li>
+            <li><a href="#tecnicas">Técnicas</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        <!-- Introducción -->
+        <section id="introduccion">
+            <h2>Introducción al Violoncello</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <p>El violoncello es un instrumento de cuerda de la familia de los violines, conocido por su sonido profundo, cálido y expresivo. Con un tamaño significativamente mayor que el violín, el violoncello produce tonalidades que pueden variar desde notas muy agudas hasta graves resonantes.</p>
+                    <p>Se toca sosteniendo el instrumento entre las piernas mientras se está sentado, usando un arco para frotar las cuerdas. Este instrumento es fundamental en orquestas, música de cámara y también ha ganado popularidad en géneros contemporáneos.</p>
+                </div>
+                <div class="intro-highlight">
+                    <p><strong>Datos Rápidos:</strong></p>
+                    <p>• Cuerdas: 4</p>
+                    <p>• Tamaño: ~120 cm de largo</p>
+                    <p>• Rango: Muy versátil</p>
+                    <p>• Material: Madera (abeto, arce, ébano)</p>
+                    <p>• Origen: Italia, siglo XVI</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historia -->
+        <section id="historia">
+            <h2>Historia del Violoncello</h2>
+            <p>El violoncello evolucionó durante el Renacimiento italiano a partir de instrumentos medievales como la viola da gamba. Su desarrollo fue paralelo al del violín, pero con una orientación hacia tonalidades más graves.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">Siglo XVI</span>
+                    <span class="timeline-text">Surgimiento del violoncello primitivo en Italia, derivado de la viola da gamba. Los primeros violoncellos eran mucho más grandes que los actuales.</span>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-year">Siglo XVII</span>
+                    <span class="timeline-text">Consolidación del violoncello como instrumento solista. Compositores como Claudio Monteverdi comenzaron a escribir obras específicas para este instrumento.</span>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-year">Siglo XVIII</span>
+                    <span class="timeline-text">Época dorada del violoncello como instrumento solista. Apareció la literatura para violoncello solo, con grandes compositores como Antonio Vivaldi y Johann Bach.</span>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-year">Siglo XIX</span>
+                    <span class="timeline-text">Desarrollo técnico importante. Grandes obras de Brahms, Dvořák y Elgar elevan el violoncello a nuevas alturas artísticas. Se perfecciona la técnica moderna de interpretación.</span>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-year">Siglo XX-XXI</span>
+                    <span class="timeline-text">El violoncello se expande hacia otros géneros musicales: jazz, rock, música electrónica. Artistas revolucionarios como Yo-Yo Ma demuestran su versatilidad.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Características Físicas -->
+        <section id="caracteristicas">
+            <h2>Características del Instrumento</h2>
+            <div class="characteristics">
+                <div class="characteristic-box">
+                    <h3>Estructura</h3>
+                    <p>Consta de una caja de resonancia, un mástil (cuello), cuatro cuerdas y un sistema de afinación. La caja está hecha tradicionalmente de abeto para la tapa y arce para el fondo.</p>
+                </div>
+
+                <div class="characteristic-box">
+                    <h3>Afinación</h3>
+                    <p>Las cuatro cuerdas se afinan tradicionalmente en Do-Sol-Re-La (una octava por debajo del violín). Esto proporciona un rango de sonido muy amplio y versátil.</p>
+                </div>
+
+                <div class="characteristic-box">
+                    <h3>Sonoridad</h3>
+                    <p>Produce un sonido profundo, cálido y resonante. Su amplitud dinámica permite desde pianísimos delicados hasta fortísimos poderosos, lo que lo hace extremadamente expresivo.</p>
+                </div>
+
+                <div class="characteristic-box">
+                    <h3>El Arco</h3>
+                    <p>El arco está hecho de madera de pernambuco y crin de caballo. Permite una variedad infinita de colores y texturas sonoras al frotar las cuerdas.</p>
+                </div>
+
+                <div class="characteristic-box">
+                    <h3>Rango Musical</h3>
+                    <p>El violoncello tiene un rango que abarca más de tres octavas, permitiendo al músico navegar desde notas profundas y resonantes hasta notas agudas brillantes.</p>
+                </div>
+
+                <div class="characteristic-box">
+                    <h3>Entonación Perfecta</h3>
+                    <p>A diferencia de los instrumentos de tecla, el violoncelista controla completamente la afinación, permitiendo expresión emocional mediante variaciones sutiles de entonación.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chelistas Famosos -->
+        <section id="chelistas">
+            <h2>Chelistas Más Reconocidos</h2>
+            <div class="musicians-grid">
+                <div class="musician-card">
+                    <h3>Pablo Casals</h3>
+                    <span class="musician-period">1876 - 1973</span>
+                    <p>Considerado el mejor violoncelista del siglo XX. Revolucionó la técnica del violoncello y recuperó las Suites para violoncello de Bach, que se habían olvidado casi por completo.</p>
+                </div>
+
+                <div class="musician-card">
+                    <h3>Jacqueline du Pré</h3>
+                    <span class="musician-period">1945 - 1987</span>
+                    <p>Violoncelista británica de talento extraordinario. Conocida por su intensidad emocional y interpretaciones apasionadas, especialmente del Concierto para Violoncello de Elgar.</p>
+                </div>
+
+                <div class="musician-card">
+                    <h3>Yo-Yo Ma</h3>
+                    <span class="musician-period">1955 - Presente</span>
+                    <p>Violoncelista virtuoso que ha trascendido los límites clásicos, explorando jazz, world music y compositions experimentales. Ganador de múltiples premios Grammy.</p>
+                </div>
+
+                <div class="musician-card">
+                    <h3>Hari Nivas Datta</h3>
+                    <span class="musician-period">1927 - 2012</span>
+                    <p>Legendario cellista de la India que fusionó la música clásica occidental con la tradición india, demostrando la universalidad del instrumento.</p>
+                </div>
+
+                <div class="musician-card">
+                    <h3>Mischa Maisky</h3>
+                    <span class="musician-period">1948 - Presente</span>
+                    <p>Violoncelista soviético de renombre mundial. Reconocido por sus interpretaciones apasionadas de obras de Dvořák, Tchaikovsky y Brahms.</p>
+                </div>
+
+                <div class="musician-card">
+                    <h3>Kian Soltani</h3>
+                    <span class="musician-period">1990 - Presente</span>
+                    <p>Chelista austriaco contemporáneo ganador del Grammy. Demuestra la continuidad de excelencia en la tradición del violoncello en el siglo XXI.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Técnicas de Interpretación -->
+        <section id="tecnicas">
+            <h2>Técnicas de Interpretación</h2>
+            <p>El violoncello permite una amplia gama de técnicas que enriquecen su paleta sonora y expresiva:</p>
+            
+            <div class="techniques">
+                <div class="technique-badge">Legato</div>
+                <div class="technique-badge">Staccato</div>
+                <div class="technique-badge">Pizzicato</div>
+                <div class="technique-badge">Arco Trémolo</div>
+                <div class="technique-badge">Harmonics</div>
+                <div class="technique-badge">Glissando</div>
+                <div class="technique-badge">Vibrato</div>
+                <div class="technique-badge">Col Legno</div>
+            </div>
+
+            <p style="margin-top: 30px;"><strong>Legato:</strong> Deslizar el arco suavemente sobre las cuerdas, creando un sonido fluido y conectado, fundamental en la música expresiva.</p>
+
+            <p><strong>Staccato:</strong> Notas cortas y separadas, producidas con movimientos rápidos del arco o golpes suaves.</p>
+
+            <p><strong>Pizzicato:</strong> Pellizcando las cuerdas con los dedos en lugar de usar el arco, creando un sonido percusivo y brillante.</p>
+
+            <p><strong>Arco Trémolo:</strong> Movimientos rápidos y repetidos del arco que crean un efecto tremolante, común en música dramática.</p>
+
+            <p><strong>Harmonics:</strong> Técnica que produce sonidos etéreos tocando levemente en puntos específicos de las cuerdas.</p>
+
+            <p><strong>Glissando:</strong> Deslizar entre notas sin separación, creando un efecto de transición suave entre diferentes alturas.</p>
+
+            <p><strong>Vibrato:</strong> Variación rítmica del tono mediante movimientos del dedo izquierdo, agregando expresión y calidez al sonido.</p>
+
+            <p><strong>Col Legno:</strong> Golpear las cuerdas con la madera del arco en lugar de con la crin, produciendo un sonido percusivo distintivo.</p>
+        </section>
+
+        <!-- Curiosidades y Datos Adicionales -->
+        <section>
+            <h2>Datos Curiosos Sobre el Violoncello</h2>
+            <ul style="margin-top: 20px; margin-left: 20px;">
+                <li style="margin-bottom: 15px;"><strong>Precios de instrumentos:</strong> Un violoncello de calidad profesional puede costar entre $2,000 y $10,000, mientras que los violoncellos antiguos de maestros luthiers pueden alcanzar precios de varios millones.</li>
+
+                <li style="margin-bottom: 15px;"><strong>El "Messiah" de Stradivarius:</strong> Uno de los violoncellos más valiosos del mundo, construido en 1694 por Antonio Stradivari, está valuado en más de $20 millones.</li>
+
+                <li style="margin-bottom: 15px;"><strong>Dimensiones variables:</strong> Aunque el tamaño estándar es de 4/4, existen violoncellos en diferentes tamaños (1/16 a 1/2) para estudiantes jóvenes.</li>
+
+                <li style="margin-bottom: 15px;"><strong>Material noble:</strong> Los mejores violoncellos usan madera envejecida durante siglos. Algunos son antiguos de 200-400 años y aún se consideran los mejores instrumentos.</li>
+
+                <li style="margin-bottom: 15px;"><strong>En la cultura popular:</strong> Aunque menos conocido que el violín, el violoncello ha aparecido prominentemente en películas, videojuegos y bandas sonoras modernas.</li>
+
+                <li style="margin-bottom: 15px;"><strong>Experiencia sensorial:</strong> Al tocar, los viboncelistas sienten las vibraciones del instrumento contra sus piernas, conectando físicamente con el sonido que producen.</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 El Mundo del Violoncello - Página Educativa</p>
+        <p>Dedicado a todos los amantes de la música clásica y la excelencia artística</p>
+    </footer>
+
+    <!-- Código del cuadro del chatBot -->
+
+    <div class="chatbot-button" id="chatButton" onclick="toggleChat()">
+        <img src="imagenChatbot.jpg" alt="Icono de Chatbot">
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <span>Asistente Virtual</span>
+            <button class="close-chat" onclick="toggleChat()">&times;</button>
+        </div>
+
+        <div class="chat-content">
+            <p><strong>Asistente:</strong> ¡Hola! ¿En qué puedo ayudarte hoy?</p>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" placeholder="Escribe tu mensaje aquí..." id="userInput">
+            <button onclick="enviarMensaje()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para abrir y cerrar el cuadro de chat
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('open');
+            
+            // Foco automático en el input al abrir
+            if (chatWindow.classList.contains('open')) {
+                document.getElementById('userInput').focus();
+            }
+        }
+
+        // Función de ejemplo para "enviar" un mensaje
+        function enviarMensaje() {
+            const input = document.getElementById('userInput');
+            const mensaje = input.value;
+            
+            if (mensaje.trim() !== "") {
+                const chatContent = document.querySelector('.chat-content');
+                
+                // Crea el nuevo mensaje del usuario
+                const nuevoMensajeUsuario = document.createElement('p');
+                nuevoMensajeUsuario.innerHTML = `<strong>Tú:</strong> ${mensaje}`;
+                chatContent.appendChild(nuevoMensajeUsuario);
+                
+                // Limpia el input
+                input.value = "";
+                
+                // Scroll automático hacia abajo
+                chatContent.scrollTop = chatContent.scrollHeight;
+                
+                // Añadir indicador de "Escribiendo..."
+                const escribiendoMensaje = document.createElement('p');
+                escribiendoMensaje.innerHTML = `<em>Asistente está escribiendo...</em>`;
+                escribiendoMensaje.id = 'escribiendo-indicador';
+                chatContent.appendChild(escribiendoMensaje);
+                chatContent.scrollTop = chatContent.scrollHeight;
+
+                // Hacer la petición al backend en Python (ruta relativa para Vercel)
+                fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: mensaje })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Remover indicador de escribiendo
+                    const indicador = document.getElementById('escribiendo-indicador');
+                    if (indicador) indicador.remove();
+
+                    const respuesta = document.createElement('p');
+                    if (data.reply) {
+                        // Formatear la respuesta básica (reemplazar saltos de línea con <br>)
+                        const formattedReply = data.reply.replace(/\n/g, '<br>');
+                        respuesta.innerHTML = `<strong>Asistente:</strong> ${formattedReply}`;
+                    } else if (data.error) {
+                        respuesta.innerHTML = `<strong>Error:</strong> ${data.error}`;
+                        respuesta.style.color = 'red';
+                    } else {
+                        respuesta.innerHTML = `<strong>Error:</strong> Respuesta inesperada del servidor.`;
+                        respuesta.style.color = 'red';
+                    }
+                    chatContent.appendChild(respuesta);
+                    chatContent.scrollTop = chatContent.scrollHeight;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Remover indicador de escribiendo
+                    const indicador = document.getElementById('escribiendo-indicador');
+                    if (indicador) indicador.remove();
+                    
+                    const respuesta = document.createElement('p');
+                    respuesta.innerHTML = `<strong>Error:</strong> No se pudo conectar con el servidor. Asegúrate de que app.py esté en ejecución.`;
+                    respuesta.style.color = 'red';
+                    chatContent.appendChild(respuesta);
+                    chatContent.scrollTop = chatContent.scrollHeight;
+                });
+            }
+        }
+
+        // Permite enviar el mensaje al presionar 'Enter'
+        document.getElementById('userInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                enviarMensaje();
+            }
+        });
+    </script>
+
+</body>
+</html>

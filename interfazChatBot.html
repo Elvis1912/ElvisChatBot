@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Chatbot Desplegable</title>
+    <style>
+        /* Estilos básicos para el cuerpo de la página */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        /* Contenedor del contenido de ejemplo */
+        .content {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- ESTILOS DEL BOTÓN DEL CHATBOT --- */
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;  /* Tamaño del botón redondo */
+            height: 80px;
+            background-color: #fff; /* Fondo blanco */
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000; /* Asegura que esté por encima de todo */
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Mantiene la imagen dentro del círculo */
+        }
+
+        /* Efecto hover en el botón */
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilo para la imagen dentro del botón */
+        .chatbot-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ajusta la imagen sin deformarla */
+        }
+
+        /* --- ESTILOS DEL CUADRO DE DESPLIEGUE --- */
+        .chat-window {
+            position: fixed;
+            bottom: 110px; /* Separación del botón */
+            right: 20px;
+            width: 50vw; /* 50% del ancho de la ventana */
+            height: 50vh; /* 50% de la altura de la ventana */
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            z-index: 999; /* Por debajo del botón pero por encima de la página */
+            display: none; /* Oculto por defecto */
+            flex-direction: column;
+            overflow: hidden; /* Evita que el contenido se salga */
+        }
+
+        /* Clase para mostrar el cuadro (se activa con JS) */
+        .chat-window.open {
+            display: flex;
+        }
+
+        /* Cabecera del chat */
+        .chat-header {
+            background-color: #4b66f1; /* Un color azul similar al círculo de la imagen */
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Botón para cerrar el chat */
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Área de contenido del chat (mensajes) */
+        .chat-content {
+            flex: 1; /* Ocupa el espacio restante */
+            padding: 15px;
+            overflow-y: auto; /* Permite scroll si hay muchos mensajes */
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Área de entrada de texto */
+        .chat-input-area {
+            display: flex;
+            padding: 10px;
+            background-color: #fafafa;
+        }
+
+        .chat-input-area input {
+            flex: 1; /* El input ocupa casi todo el ancho */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chat-input-area button {
+            background-color: #4b66f1;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            margin-left: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbot-button" id="chatButton" onclick="toggleChat()">
+        <img src="imagenChatbot.jpg" alt="Icono de Chatbot">
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <span>Asistente Virtual</span>
+            <button class="close-chat" onclick="toggleChat()">&times;</button>
+        </div>
+
+        <div class="chat-content">
+            <p><strong>Asistente:</strong> ¡Hola! ¿En qué puedo ayudarte hoy?</p>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" placeholder="Escribe tu mensaje aquí..." id="userInput">
+            <button onclick="enviarMensaje()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para abrir y cerrar el cuadro de chat
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('open');
+            
+            // Foco automático en el input al abrir
+            if (chatWindow.classList.contains('open')) {
+                document.getElementById('userInput').focus();
+            }
+        }
+
+        // Función de ejemplo para "enviar" un mensaje
+        function enviarMensaje() {
+            const input = document.getElementById('userInput');
+            const mensaje = input.value;
+            
+            if (mensaje.trim() !== "") {
+                const chatContent = document.querySelector('.chat-content');
+                
+                // Crea el nuevo mensaje del usuario
+                const nuevoMensajeUsuario = document.createElement('p');
+                nuevoMensajeUsuario.innerHTML = `<strong>Tú:</strong> ${mensaje}`;
+                chatContent.appendChild(nuevoMensajeUsuario);
+                
+                // Limpia el input
+                input.value = "";
+                
+                // Scroll automático hacia abajo
+                chatContent.scrollTop = chatContent.scrollHeight;
+                
+                // (Opcional) Simular una respuesta corta después de 1 segundo
+                setTimeout(() => {
+                    const respuesta = document.createElement('p');
+                    respuesta.innerHTML = `<strong>Asistente:</strong> He recibido tu mensaje: "${mensaje}".`;
+                    chatContent.appendChild(respuesta);
+                    chatContent.scrollTop = chatContent.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        // Permite enviar el mensaje al presionar 'Enter'
+        document.getElementById('userInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                enviarMensaje();
+            }
+        });
+    </script>
+
+</body>
+</html>
