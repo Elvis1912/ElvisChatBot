@@ -1,11 +1,9 @@
 import os
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 from groq import Groq
 
 app = Flask(__name__)
-# Habilitar CORS para permitir peticiones desde el frontend (violoncello.html)
-CORS(app)
+
 
 # Inicializar cliente de Groq
 # La API key se tomará automáticamente de la variable de entorno GROQ_API_KEY en Vercel
