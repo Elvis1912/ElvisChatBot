@@ -16,11 +16,7 @@
             "dest": "/api/index.py"
         },
         {
-            "src": "/imagenChatbot.jpg",
-            "dest": "/imagenChatbot.jpg"
-        },
-        {
-            "src": "/(.*)",
+            "src": "/",
             "dest": "/violoncello.html"
         }
     ]

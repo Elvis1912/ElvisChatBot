@@ -23,7 +23,8 @@ except FileNotFoundError:
     print(f"Error: No se encontró el archivo 'InformacionDeLaPagina.txt' en la ruta {file_path}")
     PAGE_INFO = ""
 
-@app.route('/api/chat', methods=['POST'])
+@app.route('/api/chat', methods=['POST', 'OPTIONS'])
+@app.route('/chat', methods=['POST', 'OPTIONS'])
 def chat():
     # Obtener el mensaje del usuario desde el cuerpo de la petición
     data = request.json
