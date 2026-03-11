@@ -8,12 +8,20 @@
         {
             "src": "violoncello.html",
             "use": "@vercel/static"
+        },
+        {
+            "src": "*.jpg",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
         {
             "src": "/api/(.*)",
             "dest": "/api/index.py"
+        },
+        {
+            "src": "/(.*\\.jpg)",
+            "dest": "/$1"
         },
         {
             "src": "/",
